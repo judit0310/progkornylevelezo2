@@ -5,6 +5,7 @@ import hu.uni.eszterhazy.exceptions.InvalidDatum;
 import hu.uni.eszterhazy.exceptions.InvalidKor;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Kutya {
 
@@ -107,5 +108,25 @@ public class Kutya {
 
     public void setTulaj_neve(String tulaj_neve) {
         this.tulaj_neve = tulaj_neve;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Kutya kutya = (Kutya) o;
+        return ivartalanitva == kutya.ivartalanitva &&
+                kor == kutya.kor &&
+                Objects.equals(nev, kutya.nev) &&
+                Objects.equals(chip, kutya.chip) &&
+                fajta == kutya.fajta &&
+                ivar == kutya.ivar &&
+                Objects.equals(oltas_ideje, kutya.oltas_ideje) &&
+                Objects.equals(tulaj_neve, kutya.tulaj_neve);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nev, chip, fajta, ivar, ivartalanitva, kor, oltas_ideje, tulaj_neve);
     }
 }
